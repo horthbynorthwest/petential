@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import generics
+from .serializers import FoodSerializer
+from .models import Food
 
 # Create your views here.
-def main(request):
-    return HttpResponse("<h1>Hello, world</h1>")
+class FoodView(generics.CreateAPIView):
+    queryset = Food.objects.all()
+    serializer_class = FoodSerializer

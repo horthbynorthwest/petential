@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import main
+from .views import FoodView
 
 urlpatterns = [
-    path('food', main)
+    path('food', FoodView.as_view()),
 ]
