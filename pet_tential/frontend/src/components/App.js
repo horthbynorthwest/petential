@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 
+import FoodPage from "./FoodPage";
+
 export default class App extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        return <h1>TESTING REACT CODE PLEASE WORK</h1>;
+        return (
+            <div>
+                <FoodPage />
+            </div>
+        );
     }
 }
 
