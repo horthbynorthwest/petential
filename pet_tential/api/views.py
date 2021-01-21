@@ -24,6 +24,5 @@ class CreateFoodView(APIView):
             food = Food(meal_type=meal_type, date=date, comment=comment, treats=treats)
             food.save()
             return Response(FoodSerializer(food).data, status=status.HTTP_201_CREATED)
-
         
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)

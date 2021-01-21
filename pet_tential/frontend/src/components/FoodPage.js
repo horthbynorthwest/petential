@@ -68,6 +68,7 @@ export default class FoodPage extends Component {
     }
 
     handleSubmitButtonPressed() {
+        console.log("at the top");
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -78,15 +79,18 @@ export default class FoodPage extends Component {
               treats: this.state.treats,
             }),
           };
+          console.log("hi");
+
           fetch("/api/add-food", requestOptions)
             .then((response) => response.json())
             .then((data) => console.log(data));
+
+        
     }
 
     render() {
         return (
             <form>
-                
               <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
                     <Typography component="h4" variant="h4">
