@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    context: __dirname + '/src',
+    context: __dirname + 'pet_tential/frontend/src',
     app: './src/index.js',
   },
   plugins: [
