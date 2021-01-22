@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -14,9 +15,12 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "jest": "^26.6.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-test-renderer": "^17.0.1",
     "webpack": "^5.16.0",
     "webpack-cli": "^4.4.0"
   },
@@ -24,6 +28,7 @@
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
+    "react": "^17.0.1",
     "react-router-dom": "^5.2.0"
   },
   "engines": {
