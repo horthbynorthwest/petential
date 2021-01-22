@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from .serializers import FoodSerializer, CreateFoodSerializer
-from .models import Food
+from .serializers import FoodSerializer, CreateFoodSerializer, PackSerializer
+from .models import Food, Pack
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-# Create your views here.
+# Create Pack views here.
+class PackView(generics.ListAPIView):
+    queryset = Pack.objects.all()
+    serializer_class = PackSerializer
+
+# Create your Food views here.
 class FoodView(generics.ListAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer

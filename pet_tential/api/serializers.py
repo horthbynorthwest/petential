@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Food
+from .models import Food, Pack
+
+class PackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pack
+        fields = ('id', 'code', 'host', 'pet_name', 'created_at')
 
 class FoodSerializer(serializers.ModelSerializer):
     class Meta:

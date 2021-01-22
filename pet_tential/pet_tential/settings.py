@@ -15,8 +15,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +30,7 @@ with open('./pet_tential/secret_key.txt') as f:
 # this is a test
 DEBUG = True
 
-ALLOWED_HOSTS = ['petential.herokuapp.com', 'http://127.0.0.1:8000/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
