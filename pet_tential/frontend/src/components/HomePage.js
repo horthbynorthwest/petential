@@ -1,9 +1,4 @@
 import React, { Component } from "react";
-import FoodPage from "./FoodPage";
-import WalkPage from "./WalkPage";
-import BehaviourPage from "./BehaviourPage";
-import ToiletPage from "./ToiletPage";
-import MedicalPage from "./MedicalPage";
 import {
   BrowserRouter as Router,
   Switch,
@@ -28,9 +23,6 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
             <Grid container spacing={1} align="center">
               <Grid item xs={12} align="center">
                 <Typography component="h4" variant="h4">
@@ -63,14 +55,6 @@ export default class HomePage extends Component {
                 </Button>
               </Grid>
             </Grid>
-          </Route>
-          <Route path="/food" component={FoodPage} />
-          <Route path="/walk" component={WalkPage} />
-          <Route path="/behaviour" component={BehaviourPage} />
-          <Route path="/toilet" component={ToiletPage} />
-          <Route path="/medical" component={MedicalPage} />
-        </Switch>
-      </Router>
     );
   }
 }
