@@ -22,7 +22,7 @@ import {
 
 export default class FoodPage extends Component {
     defaultTreats = 0
-    
+
     constructor(props) {
         super(props);
 
@@ -31,7 +31,7 @@ export default class FoodPage extends Component {
 
         this.state = {
             mealType: "",
-            date: this.defaultDate,
+            date: "",
             comment: "",
             treats: this.defaultTreats,
           };
@@ -41,6 +41,13 @@ export default class FoodPage extends Component {
         this.handleCommentChange = this.handleCommentChange.bind(this);
         this.handleTreatsChange = this.handleTreatsChange.bind(this);
         this.handleSubmitButtonPressed = this.handleSubmitButtonPressed.bind(this);
+    }
+
+    formatDate() {
+    let day = new Date().getUTCDate();
+    let month = new Date().getUTCMonth() + 1;
+    let year = new Date().getUTCFullYear();
+    return year + '-' + month + '-' + day;
     }
 
     handleMealTypeChange(e) {
@@ -85,7 +92,7 @@ export default class FoodPage extends Component {
             .then((response) => response.json())
             .then((data) => console.log(data));
 
-        
+
     }
 
     render() {
@@ -100,55 +107,55 @@ export default class FoodPage extends Component {
                 <Grid item xs={12}>
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
-                      <TextField 
-                      fullWidth 
-                      label="Meal Type" 
-                      name="MealType" 
-                      size="small" 
-                      variant="outlined" 
-                      onChange={this.handleMealTypeChange} 
+                      <TextField
+                      fullWidth
+                      label="Meal Type"
+                      name="MealType"
+                      size="small"
+                      variant="outlined"
+                      onChange={this.handleMealTypeChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <TextField 
-                      fullWidth 
-                      type="date" 
-                      size="small" 
-                      variant="outlined" 
-                      onChange={this.handleDateChange} 
-                      defaultValue={this.defaultDate} 
+                      <TextField
+                      fullWidth
+                      type="date"
+                      size="small"
+                      variant="outlined"
+                      onChange={this.handleDateChange}
+                      defaultValue={this.defaultDate}
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <TextField 
-                      fullWidth 
-                      label="Comment" 
-                      name="Comment" 
-                      size="small" 
-                      variant="outlined" 
-                      onChange={this.handleCommentChange} 
+                      <TextField
+                      fullWidth
+                      label="Comment"
+                      name="Comment"
+                      size="small"
+                      variant="outlined"
+                      onChange={this.handleCommentChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <TextField 
-                      fullWidth 
-                      type="number" 
-                      label="Treats" 
-                      name="Treats" 
-                      size="small" 
-                      variant="outlined" 
-                      onChange={this.handleTreatsChange} 
-                      defaultValue={this.defaultTreats} 
+                      <TextField
+                      fullWidth
+                      type="number"
+                      label="Treats"
+                      name="Treats"
+                      size="small"
+                      variant="outlined"
+                      onChange={this.handleTreatsChange}
+                      defaultValue={this.defaultTreats}
                       />
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button 
-                  color="primary" 
-                  fullWidth 
-                  type="submit" 
-                  variant="contained" 
+                  <Button
+                  color="primary"
+                  fullWidth
+                  type="submit"
+                  variant="contained"
                   onClick={this.handleSubmitButtonPressed}
                   >
                     Post
