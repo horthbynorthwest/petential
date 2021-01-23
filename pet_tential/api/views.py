@@ -26,6 +26,25 @@ class GetPack(APIView):
 
         return Response({'Bad Request': 'Code paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)
 
+class JoinPack(APIView):
+    lookup_url_kwarg = 'code'
+
+    def post(self, request, format=None):
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+
+        code = request.data.get(self.lookup_url_kwarg)
+        if code != None:
+            pack_result = Pack.objects.filter(code=code)
+            if len(pack_result) > 0:
+                pack = pack_result[0]
+                self.request.session['pack_code'] = code
+                return Response({'message': 'Pack Joined!'}, status=status.HTTP_200_OK)
+
+            return Response({'Bad Request': 'Invalid Pack Code'}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({'Bad Request': 'Invalid post data, did not find a code key'}, status=status.HTTP_400_BAD_REQUEST)
+
 class CreatePackView(APIView):
     serializer_class = CreatePackSerializer
 
@@ -42,10 +61,12 @@ class CreatePackView(APIView):
                 pack = queryset[0]
                 pack.pet_name = pet_name
                 pack.save(update_fields=['pet_name'])
+                self.request.session['pack_code'] = pack.code
                 return Response(PackSerializer(pack).data, status=status.HTTP_200_OK)
             else:
                 pack = Pack(host=host, pet_name=pet_name)
                 pack.save()
+                self.request.session['pack_code'] = pack.code
                 return Response(PackSerializer(pack).data, status=status.HTTP_201_CREATED)
 
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
