@@ -23,6 +23,7 @@ export default class WelcomPage extends Component {
     this.state = {
       packCode: null,
     };
+    this.clearPackCode = this.clearPackCode.bind(this);
   }
 
   async componentDidMount() {
@@ -57,6 +58,12 @@ export default class WelcomPage extends Component {
     );
   }
 
+  clearPackCode() {
+    this.setState({
+      packCode: null,
+    });
+  }
+
   render() {
     return(
         <Router>
@@ -72,7 +79,11 @@ export default class WelcomPage extends Component {
             <Route path="/home" component={HomePage} />
             <Route path="/join" component={JoinPackPage} />
             <Route path="/create" component={CreatePackPage} />
-            <Route path="/pack/:packCode" component={Pack} />
+            <Route path="/pack/:packCode" 
+              render={(props) => {
+                return <Pack {...props} leavePackCallback={this.clearPackCode} />;
+              }}
+            />
             <Route path="/food" component={FoodPage} />
             <Route path="/walk" component={WalkPage} />
             <Route path="/behaviour" component={BehaviourPage} />

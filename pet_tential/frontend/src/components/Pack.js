@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import FormControl from "@material-ui/core/FormControl";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { Grid, Button, Typography } from "@material-ui/core";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,17 +17,35 @@ export default class Pack extends Component {
     };
     this.packCode = this.props.match.params.packCode;
     this.getPackDetails();
+    this.leaveButtonPressed = this.leaveButtonPressed.bind(this);
   }
 
   getPackDetails() {
     fetch("/api/get-pack" + "?code=" + this.packCode)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          this.props.leavePackCallback();
+          this.props.history.push("/");
+        }
+        return response.json();
+      })
       .then((data) => {
         this.setState({
           petName: data.pet_name,
           isHost: data.is_host,
         });
       });
+  }
+
+  leaveButtonPressed() {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch("/api/leave-pack", requestOptions).then((_response) => {
+      this.props.leavePackCallback();
+      this.props.history.push("/");
+    });
   }
 
 render() {
@@ -76,6 +86,11 @@ render() {
                 Behaviour Training
                 </Button>
               </Grid>           
+              <Grid item xs={12} align="center">
+                <Button color="secondary" variant="contained" onClick={this.leaveButtonPressed}>
+                Leave Pack
+                </Button>
+              </Grid>  
       </Grid>
     );
   }
