@@ -82,6 +82,13 @@ class UserInPack(APIView):
         }
         return JsonResponse(data, status=status.HTTP_200_OK)
 
+class LeavePack(APIView):
+    def post(self, request, format=None):
+        if 'pack_code' in self.request.session:
+            self.request.session.pop('pack_code')
+
+        return Response({'Message': 'Success'}, status=status.HTTP_200_OK)
+
 # Create your Food views here.
 class FoodView(generics.ListAPIView):
     queryset = Food.objects.all()
