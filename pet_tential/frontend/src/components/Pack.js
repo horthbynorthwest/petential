@@ -41,19 +41,14 @@ export default class Pack extends Component {
 render() {
     return (
       <Grid container spacing={1} align="center">
-      <div>
-      <Grid item xs={12} align="center">
-            <Typography component="h4" variant="h4">
-              <h3>Your Pack Code is:{this.packCode}</h3>
-
-        <p>Pet Name: {this.state.petName.toString()}</p>
-        <p>Host: {this.state.isHost.toString()}</p>
-        </Typography>
-      </Grid>
-      </div>
+    
         <Grid item xs={12} align="center">
             <Typography component="h4" variant="h4">
-               Welcome to Petential
+            Welcome to Petential
+            <p>Your Pack Code is:{this.packCode}</p>
+            <br />
+            <p>Pet Name: {this.state.petName.toString()}</p>
+               
             </Typography>
         </Grid>
         <Grid item xs={12} align="center">
