@@ -4,6 +4,7 @@ from .serializers import FoodSerializer, CreateFoodSerializer, PackSerializer, C
 from .models import Food, Pack
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http import JsonResponse
 
 # Create Pack views here.
 class PackView(generics.ListAPIView):
@@ -71,6 +72,15 @@ class CreatePackView(APIView):
 
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
 
+class UserInPack(APIView):
+    def get(self, request, format=None):
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+
+        data = {
+            'code': self.request.session.get('pack_code')
+        }
+        return JsonResponse(data, status=status.HTTP_200_OK)
 
 # Create your Food views here.
 class FoodView(generics.ListAPIView):
