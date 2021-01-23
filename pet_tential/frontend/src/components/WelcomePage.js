@@ -8,6 +8,7 @@ import WalkPage from "./WalkPage";
 import BehaviourPage from "./BehaviourPage";
 import ToiletPage from "./ToiletPage";
 import MedicalPage from "./MedicalPage";
+import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
 import {
     BrowserRouter as Router,
     Switch,
@@ -21,12 +22,34 @@ export default class WelcomPage extends Component {
     super(props);
   }
 
+  renderWelcomePage() {
+    return (
+      <Grid container spacing={3}>
+        <Grid item xs={12} align="center">
+          <Typography variant="h3" compact="h3">
+            Petential
+          </Typography>
+        </Grid>
+        <Grid item xs={12} align="center">
+          <ButtonGroup disableElevation variant="contained" color="primary">
+            <Button color="primary" to="/join" component={Link}>
+              Join a Pack
+            </Button>
+            <Button color="primary" to="/create" component={Link}>
+              Create a Pack
+            </Button>
+          </ButtonGroup>
+        </Grid>
+      </Grid>
+    );
+  }
+
   render() {
     return(
         <Router>
           <Switch>
             <Route exact path="/">
-              <p>This is the welcome page</p>
+              {this.renderWelcomePage}
             </Route>
             <Route path="/home" component={HomePage} />
             <Route path="/join" component={JoinPackPage} />
