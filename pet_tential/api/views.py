@@ -10,6 +10,21 @@ class PackView(generics.ListAPIView):
     queryset = Pack.objects.all()
     serializer_class = PackSerializer
 
+class GetPack(APIView):
+    serializer_class = PackSerializer
+    lookup_url_kwarg = 'code'
+
+    def get(self, request, format=None):
+        code = request.GET.get(self.lookup_url_kwarg)
+        if code != None:
+            pack = Pack.objects.filter(code=code)
+            if len(pack) > 0:
+                data = PackSerializer(pack[0]).data
+                return Response(data, status=status.HTTP_200_OK)
+            return Response({'Pack Not Found': 'Invalid Pack Code.'}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({'Bad Request': 'Code paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)
+
 class CreatePackView(APIView):
     serializer_class = CreatePackSerializer
 
