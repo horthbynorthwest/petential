@@ -20,7 +20,24 @@ export default class JoinPackPage extends Component {
   }
 
   packButtonPressed() {
-    console.log(this.state.packCode);
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        code: this.state.packCode,
+      }),
+    };
+    fetch("/api/join-pack", requestOptions)
+      .then((response) => {
+        if (response.ok) {
+          this.props.history.push(`/pack/${this.state.packCode}`);
+        } else {
+          this.setState({ error: "Pack not found." });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
