@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import CreatePackPage from "./CreatePackPage";
 import JoinPackPage from "./JoinPackPage";
 import Pack from "./Pack";
-import HomePage from "./HomePage";
 import FoodPage from "./FoodPage";
 import WalkPage from "./WalkPage";
 import BehaviourPage from "./BehaviourPage";
@@ -76,7 +75,6 @@ export default class WelcomPage extends Component {
               );
             }}
           />
-            <Route path="/home" component={HomePage} />
             <Route path="/join" component={JoinPackPage} />
             <Route path="/create" component={CreatePackPage} />
             <Route path="/pack/:packCode" 
