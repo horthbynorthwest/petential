@@ -20,6 +20,7 @@ class GetPack(APIView):
             pack = Pack.objects.filter(code=code)
             if len(pack) > 0:
                 data = PackSerializer(pack[0]).data
+                data['is_host'] = self.request.session.session_key == pack[0].host
                 return Response(data, status=status.HTTP_200_OK)
             return Response({'Pack Not Found': 'Invalid Pack Code.'}, status=status.HTTP_404_NOT_FOUND)
 

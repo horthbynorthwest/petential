@@ -8,13 +8,24 @@ export default class Pack extends Component {
       isHost: false,
     };
     this.packCode = this.props.match.params.packCode;
-    // this.getRoomDetails();
+    this.getPackDetails();
+  }
+
+  getPackDetails() {
+    fetch("/api/get-pack" + "?code=" + this.packCode)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          petName: data.pet_name,
+          isHost: data.is_host,
+        });
+      });
   }
 
 render() {
     return (
       <div>
-        <h3>{this.packCode}</h3>
+        <h3>Your Pack Code is:{this.packCode}</h3>
         <p>Pet Name: {this.state.petName.toString()}</p>
         <p>Host: {this.state.isHost.toString()}</p>
       </div>

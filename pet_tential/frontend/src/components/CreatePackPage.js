@@ -39,7 +39,7 @@ export default class CreatePackPage extends Component {
     };
     fetch("/api/add-pack", requestOptions)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => this.props.history.push("/pack/" + data.code));
   }
 
 
