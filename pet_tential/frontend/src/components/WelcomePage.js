@@ -20,6 +20,19 @@ import {
 export default class WelcomPage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      packCode: null,
+    };
+  }
+
+  async componentDidMount() {
+    fetch("/api/user-in-pack")
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          packCode: data.code,
+        });
+      });
   }
 
   renderWelcomePage() {
@@ -48,9 +61,14 @@ export default class WelcomPage extends Component {
     return(
         <Router>
           <Switch>
-            <Route exact path="/">
-              {this.renderWelcomePage}
-            </Route>
+            <Route exact path="/" render={() => {
+              return this.state.packCode ? (
+                <Redirect to={`/pack/${this.state.packCode}`} />
+              ) : (
+                this.renderWelcomePage()
+              );
+            }}
+          />
             <Route path="/home" component={HomePage} />
             <Route path="/join" component={JoinPackPage} />
             <Route path="/create" component={CreatePackPage} />
