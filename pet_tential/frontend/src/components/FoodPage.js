@@ -19,34 +19,6 @@ import {
   import FormControlLabel from "@material-ui/core/FormControlLabel";
   import { makeStyles } from '@material-ui/core/styles';
 
-const foodItems = [
-  {
-      "id": 1,
-      "meal_type": "breakfast",
-      "date": "2021-01-21",
-      "fed_at": "2021-01-21T15:37:25.276035Z",
-      "comment": "Yum!",
-      "treats": 4
-  },
-  {
-      "id": 2,
-      "meal_type": "Lunch",
-      "date": "2021-01-22",
-      "fed_at": "2021-01-21T18:12:43.011166Z",
-      "comment": "Third time is the charm",
-      "treats": 7
-  },
-  {
-      "id": 3,
-      "meal_type": "Dinner",
-      "date": "2021-01-24",
-      "fed_at": "2021-01-21T18:16:47.315402Z",
-      "comment": "four-leafed clover!",
-      "treats": 4
-  }
-];
-
-
 export default class FoodPage extends Component {
     defaultTreats = 0
     
@@ -61,7 +33,7 @@ export default class FoodPage extends Component {
             date: this.defaultDate,
             comment: "",
             treats: this.defaultTreats,
-            foodList: foodItems
+            foodList: []
           };
 
         this.handleMealTypeChange = this.handleMealTypeChange.bind(this);
@@ -70,6 +42,22 @@ export default class FoodPage extends Component {
         this.handleTreatsChange = this.handleTreatsChange.bind(this);
         this.handleSubmitButtonPressed = this.handleSubmitButtonPressed.bind(this);
     }
+
+    componentDidMount() {
+      this.refreshList();
+    }
+
+    refreshList = () => {
+      // this route may change to get-food once we have code set up to return only food for particular pack
+      fetch("/api/food")
+        .then((response) => response.json())
+        .then((foods) => {
+          console.log(foods);
+          this.setState({
+            foodList: foods
+          });
+        });
+    };
 
     handleMealTypeChange(e) {
         this.setState({
@@ -123,8 +111,7 @@ export default class FoodPage extends Component {
             key={item.id}
            >
             <span>
-              {item.date}
-              {item.meal_type}
+              {item.date} - {item.meal_type}
             </span>
           </li>
       ));
