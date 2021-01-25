@@ -125,8 +125,8 @@ class CreateFoodView(APIView):
             date = serializer.data.get('date')
             comment = serializer.data.get('comment')
             treats = serializer.data.get('treats')
-
-            food = Food(meal_type=meal_type, date=date, comment=comment, treats=treats)
+            pack_id = self.request.session.get('pack_id')
+            food = Food(meal_type=meal_type, date=date, comment=comment, treats=treats, pack_id=pack_id)
             food.save()
             return Response(FoodSerializer(food).data, status=status.HTTP_201_CREATED)
         
