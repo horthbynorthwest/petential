@@ -19,7 +19,6 @@ import {
   import FormControlLabel from "@material-ui/core/FormControlLabel";
   import { makeStyles } from '@material-ui/core/styles';
 
-
 export default class FoodPage extends Component {
     defaultTreats = 0
 
@@ -34,6 +33,7 @@ export default class FoodPage extends Component {
             date: "",
             comment: "",
             treats: this.defaultTreats,
+            foodList: []
           };
 
         this.handleMealTypeChange = this.handleMealTypeChange.bind(this);
@@ -42,6 +42,22 @@ export default class FoodPage extends Component {
         this.handleTreatsChange = this.handleTreatsChange.bind(this);
         this.handleSubmitButtonPressed = this.handleSubmitButtonPressed.bind(this);
     }
+
+    componentDidMount() {
+      this.refreshList();
+    }
+
+    refreshList = () => {
+      // this route may change to get-food once we have code set up to return only food for particular pack
+      fetch("/api/food")
+        .then((response) => response.json())
+        .then((foods) => {
+          console.log(foods);
+          this.setState({
+            foodList: foods
+          });
+        });
+    };
 
     formatDate() {
     let day = new Date().getUTCDate();
@@ -95,13 +111,27 @@ export default class FoodPage extends Component {
 
     }
 
+    renderItems = () => {
+      const newItems = this.state.foodList;
+      return newItems.map(item => (
+          <li
+            key={item.id}
+           >
+            <span>
+              {item.date} - {item.meal_type}
+            </span>
+          </li>
+      ));
+    };
+
     render() {
         return (
+          <div>
             <form>
               <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
                     <Typography component="h4" variant="h4">
-                        Food Log
+                        Add Food
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
@@ -163,6 +193,17 @@ export default class FoodPage extends Component {
                 </Grid>
               </Grid>
             </form>
+            <Grid container spacing={3}>
+              <Grid item xs={12} align="center">
+                    <Typography component="h4" variant="h4">
+                        Meal Log
+                    </Typography>
+                </Grid>
+              <ul>
+                {this.renderItems()}
+              </ul>
+            </Grid>
+          </div>
         );
     }
 }

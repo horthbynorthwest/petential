@@ -7,3 +7,7 @@ class Food(models.Model):
     fed_at = models.DateTimeField(auto_now_add=True)
     comment = models.CharField(max_length=100, null=True, default="")
     treats = models.IntegerField(null=False, default=0)
+
+# The __str__ method just tells Django what to print when it needs to print out an instance of the any model.
+    def _str_(self):
+        return self.meal_type
