@@ -102,12 +102,13 @@ class GetFood(generics.ListAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
 
-    def list(self, request, format=None):
+    def list(self, request):
         queryset = self.get_queryset()
         serializer_class = FoodSerializer(queryset, many=True)
         pack_id = self.request.session.get('pack_id')
         if pack_id:
-            foodList = Food.objects.filter(pack_id=pack_id)
+            foodList = Food.objects.filter(pack_id=pack_id).order_by('-fed_at')[:5]
+
             return Response(FoodSerializer(foodList, many=True).data, status=status.HTTP_200_OK)
 
         return Response({'Bad Request': 'Pack id paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)

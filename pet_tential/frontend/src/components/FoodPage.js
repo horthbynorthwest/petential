@@ -112,7 +112,7 @@ export default class FoodPage extends Component {
 
     renderItems = () => {
       const newItems = this.state.foodList;
-      return newItems.reverse().map(item => (
+      return newItems.map(item => (
           <li
             key={item.id}
            >
