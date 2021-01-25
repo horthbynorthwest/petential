@@ -117,7 +117,7 @@ export default class FoodPage extends Component {
             key={item.id}
            >
             <span>
-              {item.date} - {item.meal_type} - {item.comment}
+              {item.date} - {item.meal_type} - {item.comment} - Treats: {item.treats}
             </span>
           </li>
       ));
