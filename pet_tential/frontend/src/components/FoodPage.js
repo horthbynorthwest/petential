@@ -48,7 +48,7 @@ export default class FoodPage extends Component {
 
     refreshList = () => {
       // this route may change to get-food once we have code set up to return only food for particular pack
-      fetch("/api/food")
+      fetch("/api/get-food")
         .then((response) => response.json())
         .then((foods) => {
           console.log(foods);

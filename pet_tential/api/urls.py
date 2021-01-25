@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import FoodView, CreateFoodView, PackView, CreatePackView, GetPack, JoinPack, UserInPack, LeavePack
+from .views import FoodView, CreateFoodView, PackView, CreatePackView, GetPack, JoinPack, UserInPack, LeavePack, GetFood
 
 urlpatterns = [
     path('food', FoodView.as_view()),
@@ -9,8 +9,7 @@ urlpatterns = [
     path('get-pack', GetPack.as_view()),
     path('join-pack', JoinPack.as_view()),
     path('user-in-pack', UserInPack.as_view()),
-    path('leave-pack', LeavePack.as_view())
-    # get food holding path put in, for once logic written to query db for just pack food
-    # path('get-food', GetFood.as_view())
+    path('leave-pack', LeavePack.as_view()),
+    path('get-food', GetFood.as_view())
 
 ]

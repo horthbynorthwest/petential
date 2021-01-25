@@ -14,7 +14,7 @@ class CreatePackSerializer(serializers.ModelSerializer):
 class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Food
-        fields = ('id', 'meal_type', 'date', 'fed_at', 'comment', 'treats')
+        fields = ('id', 'meal_type', 'date', 'fed_at', 'comment', 'treats', 'pack_id')
 
 class CreateFoodSerializer(serializers.ModelSerializer):
     class Meta:
