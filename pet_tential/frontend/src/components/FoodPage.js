@@ -16,7 +16,9 @@ import {
   import FormControlLabel from "@material-ui/core/FormControlLabel";
   import { makeStyles } from '@material-ui/core/styles';
 
+
 export default class FoodPage extends Component {
+  
     defaultTreats = 0
 
     constructor(props) {
@@ -110,12 +112,12 @@ export default class FoodPage extends Component {
 
     renderItems = () => {
       const newItems = this.state.foodList;
-      return newItems.map(item => (
+      return newItems.reverse().map(item => (
           <li
             key={item.id}
            >
             <span>
-              {item.date} - {item.meal_type}
+              {item.date} - {item.meal_type} - {item.comment}
             </span>
           </li>
       ));
@@ -201,9 +203,11 @@ export default class FoodPage extends Component {
                         Meal Log
                     </Typography>
                 </Grid>
-              <ul>
-                {this.renderItems()}
-              </ul>
+              <Grid item xs={12} alignitem="center">
+                <ul alignitem="center">
+                  {this.renderItems()}
+                </ul>
+              </Grid>
             </Grid>
           </div>
         );
