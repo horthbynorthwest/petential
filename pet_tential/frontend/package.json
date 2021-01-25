@@ -7,7 +7,6 @@
     "build": "webpack --mode production",
     "heroku-postbuild": "npm run build",
     "test": "jest"
-
   },
   "keywords": [],
   "author": "",

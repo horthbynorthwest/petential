@@ -6,10 +6,7 @@ import {
     Link,
     Redirect,
   } from "react-router-dom";
-  import Button from "@material-ui/core/Button";
-  import Grid from "@material-ui/core/Grid";
-  import Typography from "@material-ui/core/Typography";
-  import TextField from "@material-ui/core/TextField";
+  import { Grid, Button, ButtonGroup, Typography, TextField } from "@material-ui/core";
   import Container from "@material-ui/core/Container";
   import InputLabel from "@material-ui/core/InputLabel";
   import FormHelperText from "@material-ui/core/FormHelperText";
@@ -181,15 +178,20 @@ export default class FoodPage extends Component {
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button
-                  color="primary"
-                  fullWidth
-                  type="submit"
-                  variant="contained"
-                  onClick={this.handleSubmitButtonPressed}
-                  >
-                    Post
-                  </Button>
+                  <ButtonGroup disableElevation variant="contained" fullWidth>
+                    <Button
+                    color="primary"
+                    fullWidth
+                    type="submit"
+                    variant="contained"
+                    onClick={this.handleSubmitButtonPressed}
+                    >
+                      Post
+                    </Button>
+                    <Button color="secondary" to="/" component={Link}  >
+                      Back to Pack
+                    </Button>
+                  </ButtonGroup>
                 </Grid>
               </Grid>
             </form>
