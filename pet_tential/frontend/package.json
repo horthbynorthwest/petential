@@ -7,7 +7,6 @@
     "build": "webpack --mode production",
     "heroku-postbuild": "npm run build",
     "test": "jest"
-
   },
   "keywords": [],
   "author": "",
@@ -17,8 +16,10 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@testing-library/react": "^11.2.3",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "enzyme": "^3.11.0",
     "jest": "^26.6.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
