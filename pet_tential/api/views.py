@@ -22,6 +22,7 @@ class GetPack(APIView):
             if len(pack) > 0:
                 data = PackSerializer(pack[0]).data
                 data['is_host'] = self.request.session.session_key == pack[0].host
+                data['id'] = self.request.session['pack_id'] = pack[0].id
                 return Response(data, status=status.HTTP_200_OK)
             return Response({'Pack Not Found': 'Invalid Pack Code.'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -63,11 +64,13 @@ class CreatePackView(APIView):
                 pack.pet_name = pet_name
                 pack.save(update_fields=['pet_name'])
                 self.request.session['pack_code'] = pack.code
+                self.request.session['pack_id'] = pack.id
                 return Response(PackSerializer(pack).data, status=status.HTTP_200_OK)
             else:
                 pack = Pack(host=host, pet_name=pet_name)
                 pack.save()
                 self.request.session['pack_code'] = pack.code
+                self.request.session['pack_id'] = pack.id
                 return Response(PackSerializer(pack).data, status=status.HTTP_201_CREATED)
 
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
@@ -78,7 +81,8 @@ class UserInPack(APIView):
             self.request.session.create()
 
         data = {
-            'code': self.request.session.get('pack_code')
+            'code': self.request.session.get('pack_code'),
+            'id': self.request.session.get('pack_id')
         }
         return JsonResponse(data, status=status.HTTP_200_OK)
 
@@ -117,7 +121,7 @@ class CreateFoodView(APIView):
             date = serializer.data.get('date')
             comment = serializer.data.get('comment')
             treats = serializer.data.get('treats')
-            
+
             food = Food(meal_type=meal_type, date=date, comment=comment, treats=treats)
             food.save()
             return Response(FoodSerializer(food).data, status=status.HTTP_201_CREATED)
