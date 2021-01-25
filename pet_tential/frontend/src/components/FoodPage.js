@@ -19,10 +19,9 @@ import {
   import FormControlLabel from "@material-ui/core/FormControlLabel";
   import { makeStyles } from '@material-ui/core/styles';
 
-
 export default class FoodPage extends Component {
     defaultTreats = 0
-    
+
     constructor(props) {
         super(props);
 
@@ -31,9 +30,10 @@ export default class FoodPage extends Component {
 
         this.state = {
             mealType: "",
-            date: this.defaultDate,
+            date: "",
             comment: "",
             treats: this.defaultTreats,
+            foodList: []
           };
 
         this.handleMealTypeChange = this.handleMealTypeChange.bind(this);
@@ -41,6 +41,29 @@ export default class FoodPage extends Component {
         this.handleCommentChange = this.handleCommentChange.bind(this);
         this.handleTreatsChange = this.handleTreatsChange.bind(this);
         this.handleSubmitButtonPressed = this.handleSubmitButtonPressed.bind(this);
+    }
+
+    componentDidMount() {
+      this.refreshList();
+    }
+
+    refreshList = () => {
+      // this route may change to get-food once we have code set up to return only food for particular pack
+      fetch("/api/food")
+        .then((response) => response.json())
+        .then((foods) => {
+          console.log(foods);
+          this.setState({
+            foodList: foods
+          });
+        });
+    };
+
+    formatDate() {
+    let day = new Date().getUTCDate();
+    let month = new Date().getUTCMonth() + 1;
+    let year = new Date().getUTCFullYear();
+    return year + '-' + month + '-' + day;
     }
 
     handleMealTypeChange(e) {
@@ -85,70 +108,84 @@ export default class FoodPage extends Component {
             .then((response) => response.json())
             .then((data) => console.log(data));
 
-        
+
     }
+
+    renderItems = () => {
+      const newItems = this.state.foodList;
+      return newItems.map(item => (
+          <li
+            key={item.id}
+           >
+            <span>
+              {item.date} - {item.meal_type}
+            </span>
+          </li>
+      ));
+    };
 
     render() {
         return (
+          <div>
             <form>
               <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
                     <Typography component="h4" variant="h4">
-                        Food Log
+                        Add Food
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
-                      <TextField 
-                      fullWidth 
-                      label="Meal Type" 
-                      name="MealType" 
-                      size="small" 
-                      variant="outlined" 
-                      onChange={this.handleMealTypeChange} 
+                      <TextField
+                      fullWidth
+                      label="Meal Type"
+                      name="MealType"
+                      size="small"
+                      variant="outlined"
+                      onChange={this.handleMealTypeChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <TextField 
-                      fullWidth 
-                      type="date" 
-                      size="small" 
-                      variant="outlined" 
-                      onChange={this.handleDateChange} 
-                      defaultValue={this.defaultDate} 
+                      <TextField
+                      fullWidth
+                      type="date"
+                      size="small"
+                      variant="outlined"
+                      onChange={this.handleDateChange}
+                      defaultValue={this.defaultDate}
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <TextField 
-                      fullWidth 
-                      label="Comment" 
-                      name="Comment" 
-                      size="small" 
-                      variant="outlined" 
-                      onChange={this.handleCommentChange} 
+                      <TextField
+                      fullWidth
+                      label="Comment"
+                      name="Comment"
+                      size="small"
+                      variant="outlined"
+                      onChange={this.handleCommentChange}
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <TextField 
-                      fullWidth 
-                      type="number" 
-                      label="Treats" 
-                      name="Treats" 
-                      size="small" 
-                      variant="outlined" 
-                      onChange={this.handleTreatsChange} 
-                      defaultValue={this.defaultTreats} 
+                      <TextField
+                      fullWidth
+                      type="number"
+                      label="Treats"
+                      name="Treats"
+                      size="small"
+                      variant="outlined"
+                      onChange={this.handleTreatsChange}
+                      defaultValue={this.defaultTreats}
                       />
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button 
-                  color="primary" 
-                  fullWidth 
-                  type="submit" 
-                  variant="contained" 
+                  <Button
+                  color="primary"
+                  fullWidth
+                  type="submit"
+                  variant="contained"
                   onClick={this.handleSubmitButtonPressed}
                   >
                     Post
@@ -156,6 +193,17 @@ export default class FoodPage extends Component {
                 </Grid>
               </Grid>
             </form>
+            <Grid container spacing={3}>
+              <Grid item xs={12} align="center">
+                    <Typography component="h4" variant="h4">
+                        Meal Log
+                    </Typography>
+                </Grid>
+              <ul>
+                {this.renderItems()}
+              </ul>
+            </Grid>
+          </div>
         );
     }
 }
