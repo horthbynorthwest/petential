@@ -9,25 +9,13 @@ import {cleanup, fireEvent, render} from '@testing-library/react';
 // feature - fill in form and click Post, expect page to have content that they've just added
 // unit -
 describe ('Test the FoodPage and actions', () => {
-  test('handleMealTypeChange method changes the mealType state', () => {
+  it('allows user to include meal type, date, comment and treats', () => {
     let foodpage = new FoodPage();
     expect(foodpage.state).toEqual({ mealType: "",
     date: "",
     comment: "",
-    treats: 0, })
+    treats: 0,
+    foodList: []})
   });
+
 });
-
-
-// it('should return the initial state', () => {
-//     let foodpage = new FoodPage();
-//     expect(foodpage.initialState).toContain({ mealType: "",
-//     comment: "",
-//     treats: 0, })
-// })
-//
-// let foodpage = new FoodPage();
-// const handleMealTypeChange = jest.fn();
-//
-// foodpage.handleMealTypeChange({target: 'lunch'});
-// expect(foodpage.mealType).toEqual('lunch');
