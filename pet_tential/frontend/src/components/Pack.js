@@ -14,6 +14,7 @@ export default class Pack extends Component {
     this.state = {
       petName: "",
       isHost: false,
+      packId: ""
     };
     this.packCode = this.props.match.params.packCode;
     this.getPackDetails();
@@ -33,6 +34,7 @@ export default class Pack extends Component {
         this.setState({
           petName: data.pet_name,
           isHost: data.is_host,
+          packId: data.id
         });
       });
   }
@@ -50,12 +52,13 @@ export default class Pack extends Component {
 
 render() {
     return (
+      <div>
       <Grid container spacing={1} align="center">
     
         <Grid item xs={12} align="center">
             <Typography component="h4" variant="h4">
             Welcome to Petential
-            <p>Your Pack Code is:{this.packCode}</p>
+            <p>Your Pack Code is:{this.packCode}</p>            
             <br />
             <p>Pet Name: {this.state.petName.toString()}</p>
                
@@ -92,6 +95,7 @@ render() {
                 </Button>
               </Grid>  
       </Grid>
+      </div>
     );
   }
 }
