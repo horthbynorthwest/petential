@@ -21,6 +21,7 @@ export default class WelcomPage extends Component {
     super(props);
     this.state = {
       packCode: null,
+      packId: null
     };
     this.clearPackCode = this.clearPackCode.bind(this);
   }
@@ -31,6 +32,7 @@ export default class WelcomPage extends Component {
       .then((data) => {
         this.setState({
           packCode: data.code,
+          packId: data.id
         });
       });
   }

@@ -22,6 +22,7 @@ class GetPack(APIView):
             if len(pack) > 0:
                 data = PackSerializer(pack[0]).data
                 data['is_host'] = self.request.session.session_key == pack[0].host
+                data['id'] = self.request.session['pack_id'] = pack[0].id
                 return Response(data, status=status.HTTP_200_OK)
             return Response({'Pack Not Found': 'Invalid Pack Code.'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -63,11 +64,13 @@ class CreatePackView(APIView):
                 pack.pet_name = pet_name
                 pack.save(update_fields=['pet_name'])
                 self.request.session['pack_code'] = pack.code
+                self.request.session['pack_id'] = pack.id
                 return Response(PackSerializer(pack).data, status=status.HTTP_200_OK)
             else:
                 pack = Pack(host=host, pet_name=pet_name)
                 pack.save()
                 self.request.session['pack_code'] = pack.code
+                self.request.session['pack_id'] = pack.id
                 return Response(PackSerializer(pack).data, status=status.HTTP_201_CREATED)
 
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
@@ -78,7 +81,8 @@ class UserInPack(APIView):
             self.request.session.create()
 
         data = {
-            'code': self.request.session.get('pack_code')
+            'code': self.request.session.get('pack_code'),
+            'id': self.request.session.get('pack_id')
         }
         return JsonResponse(data, status=status.HTTP_200_OK)
 
@@ -94,18 +98,20 @@ class FoodView(generics.ListAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
 
-# Will need a get function for food, which will take pack code, look up pack id, then retrieve all food with that pack id
-# does that maybe look like a pack serializer for get pack id, which is then somehow called by the food serializer?
-# pack id is not currently a column in the food table...
+class GetFood(generics.ListAPIView):
+    queryset = Food.objects.all()
+    serializer_class = FoodSerializer
 
-#   lookup_url_kwarg = 'pack_id'
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer_class = FoodSerializer(queryset, many=True)
+        pack_id = self.request.session.get('pack_id')
+        if pack_id:
+            foodList = Food.objects.filter(pack_id=pack_id).order_by('-fed_at')[:5]
 
-#     def get(self, request, format=None):
-#         pack_id = request.GET.get(self.lookup_url_kwarg) # this prob needs changing so that it takes a method from the GetPack class
-#         if pack_id != None:
-#             foodList = Food.objects.filter(pack_id=pack_id)
+            return Response(FoodSerializer(foodList, many=True).data, status=status.HTTP_200_OK)
 
-#         return Response({'Bad Request': 'Pack id paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'Bad Request': 'Pack id paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)
 
 class CreateFoodView(APIView):
     serializer_class = CreateFoodSerializer
@@ -117,8 +123,8 @@ class CreateFoodView(APIView):
             date = serializer.data.get('date')
             comment = serializer.data.get('comment')
             treats = serializer.data.get('treats')
-            
-            food = Food(meal_type=meal_type, date=date, comment=comment, treats=treats)
+            pack_id = self.request.session.get('pack_id')
+            food = Food(meal_type=meal_type, date=date, comment=comment, treats=treats, pack_id=pack_id)
             food.save()
             return Response(FoodSerializer(food).data, status=status.HTTP_201_CREATED)
         
