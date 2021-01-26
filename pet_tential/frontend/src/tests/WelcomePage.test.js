@@ -13,10 +13,10 @@ it("renders without crashing", () => {
     shallow(<WelcomePage />);
   });
 
-it('renders welcome message', () => {
-  render(<WelcomePage />);  
-  expect(screen.getByText('Petential')).toBeInTheDocument();
-});
+// it('renders welcome message', () => {
+//   render(<WelcomePage />);  
+//   expect(screen.getByText('Petential')).toBeInTheDocument();
+// });
   // it("renders Page header", () => {
 // const wrapper = shallow(<WelcomePage />);
 // const welcome = <h3>Petential</h3>;

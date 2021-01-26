@@ -16,7 +16,7 @@ import {
     Link,
     Redirect,
   } from "react-router-dom";
-import logos from './logos.png';
+
 
 
 
@@ -54,7 +54,7 @@ export default class WelcomPage extends Component {
         </Grid>
         <Grid item xs={12} align="center">
         <div>
-          <img src={logos} alt="Logo" height={150} width={200} />
+          <img src={require('./logos.png')} alt="Logo" height={150} width={200} />
         </div>
         </Grid>
         <Grid item xs={12} align="center">
