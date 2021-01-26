@@ -25,3 +25,8 @@ class WalkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Walk
         fields = ('id', 'date', 'time', 'duration', 'comment', 'pack_id')
+
+class CreateWalkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Walk
+        fields = ('date', 'time', 'duration', 'comment', 'pack_id')

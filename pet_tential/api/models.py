@@ -37,7 +37,7 @@ class Food(models.Model):
 
 class Walk(models.Model):
     date = models.DateField()
-    time = models.TimeField(auto_now=True)
-    duration = models.DurationField()
+    time = models.TimeField()
+    duration = models.CharField(max_length=20, null=True, default="")
     comment = models.CharField(max_length=100, null=True, default="")
     pack = models.ForeignKey(Pack, on_delete=models.CASCADE)

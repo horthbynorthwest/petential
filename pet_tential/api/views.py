@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from .serializers import FoodSerializer, CreateFoodSerializer, PackSerializer, CreatePackSerializer, WalkSerializer
+from .serializers import FoodSerializer, CreateFoodSerializer, PackSerializer, CreatePackSerializer, WalkSerializer, CreateWalkSerializer
 from .models import Food, Pack, Walk
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
+
 
 # Create Pack views here.
 class PackView(generics.ListAPIView):
@@ -134,3 +135,19 @@ class CreateFoodView(APIView):
 class WalkView(generics.ListAPIView):
     queryset = Walk.objects.all()
     serializer_class = WalkSerializer
+
+class CreateWalkView(APIView):
+    serializer_class = CreateWalkSerializer
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            time = serializer.data.get('time')
+            duration = serializer.data.get('duration')
+            date = serializer.data.get('date')
+            comment = serializer.data.get('comment')
+            pack_id = self.request.session.get('pack_id')
+            walk = Walk(date=date, time=time, duration=duration, comment=comment, pack_id=pack_id)
+            walk.save()
+            return Response(WalkSerializer(walk).data, status=status.HTTP_201_CREATED)
+
+        return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
