@@ -1,6 +1,8 @@
 from django.db import models
 import string
 import random
+#from durationfield.db.models.fields.duration import DurationField
+
 
 
 # For the pack.
@@ -20,8 +22,6 @@ class Pack(models.Model):
     pet_name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 
-
-
 # For food.
 class Food(models.Model):
     meal_type = models.CharField(max_length=20, null=True, default="")
@@ -34,3 +34,10 @@ class Food(models.Model):
 # The __str__ method just tells Django what to print when it needs to print out an instance of the any model.
     def _str_(self):
         return self.meal_type
+
+class Walk(models.Model):
+    date = models.DateField()
+    time = models.TimeField(auto_now=True)
+    duration = models.DurationField()
+    comment = models.CharField(max_length=100, null=True, default="")
+    pack = models.ForeignKey(Pack, on_delete=models.CASCADE)

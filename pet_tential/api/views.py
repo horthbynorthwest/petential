@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from .serializers import FoodSerializer, CreateFoodSerializer, PackSerializer, CreatePackSerializer
-from .models import Food, Pack
+from .serializers import FoodSerializer, CreateFoodSerializer, PackSerializer, CreatePackSerializer, WalkSerializer
+from .models import Food, Pack, Walk
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -127,5 +127,10 @@ class CreateFoodView(APIView):
             food = Food(meal_type=meal_type, date=date, comment=comment, treats=treats, pack_id=pack_id)
             food.save()
             return Response(FoodSerializer(food).data, status=status.HTTP_201_CREATED)
-        
+
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
+
+# walk views
+class WalkView(generics.ListAPIView):
+    queryset = Walk.objects.all()
+    serializer_class = WalkSerializer

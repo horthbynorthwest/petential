@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Food, Pack
+from .models import Food, Pack, Walk
 
 class PackSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,3 +20,8 @@ class CreateFoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = Food
         fields = ('meal_type', 'date', 'comment', 'treats')
+
+class WalkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Walk
+        fields = ('id', 'date', 'time', 'duration', 'comment', 'pack_id')
