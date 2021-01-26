@@ -14,7 +14,7 @@ export default class Pack extends Component {
     this.state = {
       petName: "",
       isHost: false,
-      packId: "bib"
+      packId: ""
     };
     this.packCode = this.props.match.params.packCode;
     this.getPackDetails();
@@ -58,8 +58,7 @@ render() {
         <Grid item xs={12} align="center">
             <Typography component="h4" variant="h4">
             Welcome to Petential
-            <p>Your Pack Code is:{this.packCode}</p>
-            <p>Your Pack ID is:{this.state.packId.toString()}</p>            
+            <p>Your Pack Code is:{this.packCode}</p>            
             <br />
             <p>Pet Name: {this.state.petName.toString()}</p>
                

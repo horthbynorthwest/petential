@@ -113,9 +113,6 @@ class GetFood(generics.ListAPIView):
 
         return Response({'Bad Request': 'Pack id paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = UserSerializer(queryset, many=True)
-        return Response(serializer.data)
-
 class CreateFoodView(APIView):
     serializer_class = CreateFoodSerializer
 
