@@ -151,3 +151,18 @@ class CreateWalkView(APIView):
             return Response(WalkSerializer(walk).data, status=status.HTTP_201_CREATED)
 
         return Response({'Bad Request': 'Invalid data...'}, status=status.HTTP_400_BAD_REQUEST)
+
+class GetWalk(generics.ListAPIView):
+    queryset = Walk.objects.all()
+    serializer_class = WalkSerializer
+
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer_class = WalkSerializer(queryset, many=True)
+        pack_id = self.request.session.get('pack_id')
+        if pack_id:
+            walkList = Walk.objects.filter(pack_id=pack_id).order_by('-date')[:10]
+
+            return Response(WalkSerializer(walkList, many=True).data, status=status.HTTP_200_OK)
+
+        return Response({'Bad Request': 'Pack id paramater not found in request'}, status=status.HTTP_400_BAD_REQUEST)

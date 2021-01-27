@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import FoodView, CreateFoodView, PackView, CreatePackView, GetPack, JoinPack, UserInPack, LeavePack, GetFood, WalkView, CreateWalkView
+from .views import FoodView, CreateFoodView, PackView, CreatePackView, GetPack, JoinPack, UserInPack, LeavePack, GetFood, WalkView, CreateWalkView, GetWalk
 
 urlpatterns = [
     path('food', FoodView.as_view()),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('leave-pack', LeavePack.as_view()),
     path('get-food', GetFood.as_view()),
     path('walk', WalkView.as_view()),
-    path('add-walk', CreateWalkView.as_view())
+    path('add-walk', CreateWalkView.as_view()),
+    path('get-walk', GetWalk.as_view())
 
 ]
