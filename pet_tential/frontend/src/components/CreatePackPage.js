@@ -82,6 +82,7 @@ export default class CreatePackPage extends Component {
             Back
           </Button>
         </Grid>
+
       </Grid>
     );
   }
