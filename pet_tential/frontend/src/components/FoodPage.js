@@ -18,14 +18,11 @@ import {
 
 
 export default class FoodPage extends Component {
-  
+
     defaultTreats = 0
 
     constructor(props) {
         super(props);
-
-        var today = new Date(),
-        defaultDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
         this.state = {
             mealType: "",
@@ -106,8 +103,6 @@ export default class FoodPage extends Component {
           fetch("/api/add-food", requestOptions)
             .then((response) => response.json())
             .then((data) => console.log(data));
-
-
     }
 
     renderItems = () => {
@@ -199,6 +194,7 @@ export default class FoodPage extends Component {
             </form>
             <Grid container spacing={3}>
               <Grid item xs={12} align="center">
+                    <br />
                     <Typography component="h4" variant="h4">
                         Meal Log
                     </Typography>
