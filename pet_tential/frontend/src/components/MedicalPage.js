@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Button, ButtonGroup, Typography, AppBar } from "@material-ui/core";
+import { Grid, Button, ButtonGroup, Typography, AppBar, Box } from "@material-ui/core";
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,7 +24,9 @@ export default class MedicalPage extends Component {
         <h1>This page is under construction</h1>
         <br />
         <br />
+        <Box width='204px' height='254px' border={2}>
         <img src={require('./hardhat.png')} alt="Hardhat" height={250} width={200} align="center" />
+        </Box>
         <br />
         <br />
         <Button color="secondary" to="/" component={Link} variant="contained" align="center" >

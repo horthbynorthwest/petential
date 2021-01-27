@@ -6,8 +6,7 @@ import {
     Link,
     Redirect,
   } from "react-router-dom";
-  import { Grid, Button, ButtonGroup, Typography, TextField, AppBar } from "@material-ui/core";
-  import Container from "@material-ui/core/Container";
+  import { Grid, Button, ButtonGroup, Typography, TextField, AppBar, Container } from "@material-ui/core";
   import InputLabel from "@material-ui/core/InputLabel";
   import FormHelperText from "@material-ui/core/FormHelperText";
   import FormControl from "@material-ui/core/FormControl";
@@ -57,7 +56,10 @@ export default class WalkPage extends Component {
           key={item.id}
          >
           <span>
-            {item.date} - {item.time} - {item.duration} - Comment: {item.comment}
+            {item.date} - {item.time} - {item.duration} 
+            <div>
+             Comment: {item.comment}
+            </div>
           </span>
         </li>
     ));
@@ -115,6 +117,7 @@ export default class WalkPage extends Component {
         <Weather />
         </Grid>
         <form>
+        <Container maxWidth="xs" align="center">
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
             <Typography component="h4" variant="h4">
@@ -127,7 +130,6 @@ export default class WalkPage extends Component {
               <TextField
               fullWidth
               type="time"
-              label="Time"
               name="time"
               size="small"
               variant="outlined"
@@ -182,7 +184,9 @@ export default class WalkPage extends Component {
           </ButtonGroup>
         </Grid>
       </Grid>
+      </Container>
       </form>
+      <Container maxWidth="xs" align="center">
       <Grid container spacing={3}>
               <Grid item xs={12} align="center">
                     <br />
@@ -190,12 +194,13 @@ export default class WalkPage extends Component {
                         Walk Log
                     </Typography>
                 </Grid>
-              <Grid item xs={12} alignitem="center">
-                <ul alignitem="center">
+              <Grid item xs={12} align="left">
+                <ul align="left">
                   {this.renderItems()}
                 </ul>
               </Grid>
             </Grid>
+        </Container>
     </div>
     );
   }
