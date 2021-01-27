@@ -6,8 +6,7 @@ import {
     Link,
     Redirect,
   } from "react-router-dom";
-  import { Grid, Button, ButtonGroup, Typography, TextField, AppBar } from "@material-ui/core";
-  import Container from "@material-ui/core/Container";
+  import { Grid, Button, ButtonGroup, Typography, TextField, AppBar, Box, Container} from "@material-ui/core";
   import InputLabel from "@material-ui/core/InputLabel";
   import FormHelperText from "@material-ui/core/FormHelperText";
   import FormControl from "@material-ui/core/FormControl";
@@ -126,15 +125,19 @@ export default class FoodPage extends Component {
             </AppBar>
             <br></br>
             <form>
-              <Grid container spacing={3}>
-                <Grid item xs={12} align="center">
+            <Container maxWidth="xs" align="center">
+              <Grid container spacing={2}
+                direction="row"
+                alignItems="center"
+                justify="center">
+                <Grid item xs={6} align="center">
                     <Typography component="h4" variant="h4">
                         Add Food
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
+                <Grid item xs={12} width="50%">
+                  <Grid container spacing={2} width="50%">
+                    <Grid item xs={12} width="50%">
                       <TextField
                       fullWidth
                       label="Meal Type"
@@ -144,7 +147,7 @@ export default class FoodPage extends Component {
                       onChange={this.handleMealTypeChange}
                       />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} width="50%">
                       <TextField
                       fullWidth
                       type="date"
@@ -154,7 +157,7 @@ export default class FoodPage extends Component {
                       defaultValue={this.defaultDate}
                       />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} width="50%">
                       <TextField
                       fullWidth
                       label="Comment"
@@ -164,7 +167,7 @@ export default class FoodPage extends Component {
                       onChange={this.handleCommentChange}
                       />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} width="50%">
                       <TextField
                       fullWidth
                       type="number"
@@ -195,7 +198,9 @@ export default class FoodPage extends Component {
                   </ButtonGroup>
                 </Grid>
               </Grid>
+              </Container>
             </form>
+            <Container maxWidth="xs" align="center">
             <Grid container spacing={3}>
               <Grid item xs={12} align="center">
                     <br />
@@ -203,12 +208,13 @@ export default class FoodPage extends Component {
                         Meal Log
                     </Typography>
                 </Grid>
-              <Grid item xs={12} alignitem="center">
-                <ul alignitem="center">
+              <Grid item xs={12} alignitem="left">
+                <ul align="left">
                   {this.renderItems()}
                 </ul>
               </Grid>
             </Grid>
+            </Container>
           </div>
         );
     }
