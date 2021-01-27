@@ -42,7 +42,7 @@ export default class FoodPage extends Component {
         this.handleSubmitButtonPressed = this.handleSubmitButtonPressed.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
       this.refreshList();
     }
 

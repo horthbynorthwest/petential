@@ -7,7 +7,8 @@ import WalkPage from "./WalkPage";
 import BehaviourPage from "./BehaviourPage";
 import ToiletPage from "./ToiletPage";
 import MedicalPage from "./MedicalPage";
-import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Button, ButtonGroup, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia } from "@material-ui/core";
 import {
     BrowserRouter as Router,
     Switch,
@@ -15,6 +16,10 @@ import {
     Link,
     Redirect,
   } from "react-router-dom";
+
+
+
+
 
 export default class WelcomPage extends Component {
   constructor(props) {
@@ -25,6 +30,8 @@ export default class WelcomPage extends Component {
     };
     this.clearPackCode = this.clearPackCode.bind(this);
   }
+
+
 
   async componentDidMount() {
     fetch("/api/user-in-pack")
@@ -44,6 +51,11 @@ export default class WelcomPage extends Component {
           <Typography variant="h3" compact="h3">
             Petential
           </Typography>
+        </Grid>
+        <Grid item xs={12} align="center">
+        <div>
+          <img src={require('./logos.png')} alt="Logo" height={700} width={700} />
+        </div>
         </Grid>
         <Grid item xs={12} align="center">
           <ButtonGroup disableElevation variant="contained" color="primary">
