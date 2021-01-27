@@ -54,7 +54,7 @@ export default class WelcomPage extends Component {
         </Grid>
         <Grid item xs={12} align="center">
         <div>
-          <img src={require('./logos.png')} alt="Logo" height={150} width={200} />
+          <img src={require('./logos.png')} alt="Logo" height={700} width={700} />
         </div>
         </Grid>
         <Grid item xs={12} align="center">
