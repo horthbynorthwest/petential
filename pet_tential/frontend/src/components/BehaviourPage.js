@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { AppBar } from "@material-ui/core";
+import { Grid, Button, ButtonGroup, Typography, AppBar } from "@material-ui/core";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 
 export default class BehaviourPage extends Component {
   constructor(props) {
@@ -12,10 +19,19 @@ export default class BehaviourPage extends Component {
         <AppBar position="static" color="transparent" elevation={0}>
           <img src={require('./logo_without_words.png')} alt="logo" height={200} width={200}/>
         </AppBar>
-        <br></br>
-        <p>This is the behaviour page</p>
+        <br />
+        <Grid spacing={3} align="center">
+        <h1>This page is under construction</h1>
+        <br />
+        <br />
+        <img src={require('./hardhat.png')} alt="Hardhat" height={250} width={200} align="center" />
+        <br />
+        <br />
+        <Button color="secondary" to="/" component={Link} variant="contained" align="center" >
+          Back to Pack
+        </Button>
+        </Grid>
       </div>
-        
     );
   }
 }
