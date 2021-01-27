@@ -15,7 +15,6 @@ function Weather() {
         .then(result => {
           setWeather(result);
           setQuery('');
-          console.log(result);
         });
     }
   }
@@ -51,7 +50,7 @@ function Weather() {
         {(typeof weather.main != "undefined") ? (
         <div>
           <h5>
-              Today's temp in {weather.name}, {weather.sys.country} is {Math.round(weather.main.temp)}°c
+              Today in {weather.name}, {weather.sys.country} it is {Math.round(weather.main.temp)}°c
                 with {weather.weather[0].description}
           </h5>
         </div>
