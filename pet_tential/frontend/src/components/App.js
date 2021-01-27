@@ -1,7 +1,21 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import WelcomPage from "./welcomePage";
+import WelcomePage from "./welcomePage";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#135589'
+    },
+    secondary: {
+        main: '#2A93D5'
+    },
+    error: {
+      main: '#EDFAFD'
+  }
+  },
+});
 
 export default class App extends Component {
     constructor(props) {
@@ -10,9 +24,11 @@ export default class App extends Component {
 
     render() {
         return (
-          <div className="center">
-            <WelcomPage />
-          </div>
+          <MuiThemeProvider theme={theme}>
+            <div>
+              <WelcomePage />
+            </div>
+          </MuiThemeProvider>
         );
     }
 }

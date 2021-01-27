@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Button, Typography } from "@material-ui/core";
+import { Grid, Button, Typography, AppBar } from "@material-ui/core";
 import {
   BrowserRouter as Router,
   Switch,
@@ -55,6 +55,10 @@ export default class Pack extends Component {
 render() {
     return (
       <div>
+        <AppBar position="static" color="transparent" elevation={0}>
+              <img src={require('./logo_without_words.png')} alt="logo" height={200} width={200}/>
+          </AppBar>
+          <br></br>
       <Grid container spacing={1} align="center">
     
         <Grid item xs={12} align="center">

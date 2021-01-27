@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Button, ButtonGroup, Typography } from "@material-ui/core";
+import { Grid, Button, ButtonGroup, Typography, AppBar } from "@material-ui/core";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,6 +16,10 @@ export default class Toilet extends Component {
   render() {
     return (
       <div>
+        <AppBar position="static" color="transparent" elevation={0}>
+          <img src={require('./logo_without_words.png')} alt="logo" height={200} width={200}/>
+        </AppBar>
+        <br />
         <Grid spacing={3} align="center">
         <h1>This page is under construction</h1>
         <br />
