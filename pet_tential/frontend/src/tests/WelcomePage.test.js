@@ -9,14 +9,14 @@ import '@testing-library/jest-dom/extend-expect';
 import WelcomePage from '../components/WelcomePage';
 // import toJson from "enzyme-to-json";
 
-it("renders without crashing", () => {
-    shallow(<WelcomePage />);
-  });
+// it("renders without crashing", () => {
+//     shallow(<WelcomePage />);
+//   });
 
-it('renders welcome message', () => {
-  render(<WelcomePage />);  
-  expect(screen.getByText('Petential')).toBeInTheDocument();
-});
+// it('renders welcome message', () => {
+//   render(<WelcomePage />);  
+//   expect(screen.getByText('Petential')).toBeInTheDocument();
+// });
   // it("renders Page header", () => {
 // const wrapper = shallow(<WelcomePage />);
 // const welcome = <h3>Petential</h3>;

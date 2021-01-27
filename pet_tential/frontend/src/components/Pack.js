@@ -16,6 +16,8 @@ export default class Pack extends Component {
       isHost: false,
       packId: ""
     };
+    console.log("!!!!!")
+    console.log(this.props);
     this.packCode = this.props.match.params.packCode;
     this.getPackDetails();
     this.leaveButtonPressed = this.leaveButtonPressed.bind(this);
