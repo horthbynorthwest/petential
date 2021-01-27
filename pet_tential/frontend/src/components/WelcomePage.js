@@ -7,7 +7,6 @@ import WalkPage from "./WalkPage";
 import BehaviourPage from "./BehaviourPage";
 import ToiletPage from "./ToiletPage";
 import MedicalPage from "./MedicalPage";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Grid, Button, ButtonGroup, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia } from "@material-ui/core";
 import {
     BrowserRouter as Router,
@@ -16,17 +15,6 @@ import {
     Link,
     Redirect,
   } from "react-router-dom";
-
-  const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: '#135589'
-      },
-      secondary: {
-          main: '#2A93D5'
-      }
-    },
-  });
 
 export default class WelcomPage extends Component {
   constructor(props) {
@@ -57,7 +45,6 @@ export default class WelcomPage extends Component {
           <img src={require('./logos.png')} alt="Logo" height={700} width={700} />
         </div>
         </Grid>
-        <MuiThemeProvider theme={theme}>
           <Grid item xs={12} align="center">
           <ButtonGroup disableElevation variant="contained" color="primary">
             <Button color="primary" to="/join" component={Link}>
@@ -68,7 +55,6 @@ export default class WelcomPage extends Component {
             </Button>
           </ButtonGroup>
           </Grid>
-        </MuiThemeProvider>
       </Grid>
     );
   }
