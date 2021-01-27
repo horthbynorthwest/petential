@@ -54,7 +54,7 @@ export default class Pack extends Component {
 
 render() {
     return (
-      <div>
+      <div className="bg">
         <AppBar position="static" color="transparent" elevation={0}>
               <img src={require('./logo_without_words.png')} alt="logo" height={200} width={200}/>
         </AppBar>

@@ -43,7 +43,7 @@ export default class CreatePackPage extends Component {
   render() {
     return (
       // <Grid container justify = "center" spacing={1}>
-      <div>
+      <div className="bg">
         <AppBar position="static" color="transparent" elevation={0}>
               <img src={require('./logo_without_words.png')} alt="logo" height={200} width={200}/>
           </AppBar>
