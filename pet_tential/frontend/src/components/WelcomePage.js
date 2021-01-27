@@ -7,7 +7,7 @@ import WalkPage from "./WalkPage";
 import BehaviourPage from "./BehaviourPage";
 import ToiletPage from "./ToiletPage";
 import MedicalPage from "./MedicalPage";
-import { makeStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Grid, Button, ButtonGroup, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia } from "@material-ui/core";
 import {
     BrowserRouter as Router,
@@ -17,9 +17,16 @@ import {
     Redirect,
   } from "react-router-dom";
 
-
-
-
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#135589'
+      },
+      secondary: {
+          main: '#2A93D5'
+      }
+    },
+  });
 
 export default class WelcomPage extends Component {
   constructor(props) {
@@ -30,8 +37,6 @@ export default class WelcomPage extends Component {
     };
     this.clearPackCode = this.clearPackCode.bind(this);
   }
-
-
 
   async componentDidMount() {
     fetch("/api/user-in-pack")
@@ -48,25 +53,22 @@ export default class WelcomPage extends Component {
     return (
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
-          <Typography variant="h3" compact="h3">
-            Petential
-          </Typography>
-        </Grid>
-        <Grid item xs={12} align="center">
         <div>
           <img src={require('./logos.png')} alt="Logo" height={700} width={700} />
         </div>
         </Grid>
-        <Grid item xs={12} align="center">
+        <MuiThemeProvider theme={theme}>
+          <Grid item xs={12} align="center">
           <ButtonGroup disableElevation variant="contained" color="primary">
             <Button color="primary" to="/join" component={Link}>
               Join a Pack
             </Button>
-            <Button color="primary" to="/create" component={Link}>
+            <Button color="secondary" to="/create" component={Link}>
               Create a Pack
             </Button>
           </ButtonGroup>
-        </Grid>
+          </Grid>
+        </MuiThemeProvider>
       </Grid>
     );
   }
@@ -91,7 +93,7 @@ export default class WelcomPage extends Component {
           />
             <Route path="/join" component={JoinPackPage} />
             <Route path="/create" component={CreatePackPage} />
-            <Route path="/pack/:packCode" 
+            <Route path="/pack/:packCode"
               render={(props) => {
                 return <Pack {...props} leavePackCallback={this.clearPackCode} />;
               }}
