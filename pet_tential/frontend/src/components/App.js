@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import WelcomPage from "./welcomePage";
+import WelcomePage from "./welcomePage";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -10,7 +10,10 @@ const theme = createMuiTheme({
     },
     secondary: {
         main: '#2A93D5'
-    }
+    },
+    error: {
+      main: '#EDFAFD'
+  }
   },
 });
 
@@ -22,8 +25,8 @@ export default class App extends Component {
     render() {
         return (
           <MuiThemeProvider theme={theme}>
-            <div className="center">
-              <WelcomPage />
+            <div>
+              <WelcomePage />
             </div>
           </MuiThemeProvider>
         );

@@ -6,7 +6,7 @@ import {
     Link,
     Redirect,
   } from "react-router-dom";
-  import { Grid, Button, ButtonGroup, Typography, TextField } from "@material-ui/core";
+  import { Grid, Button, ButtonGroup, Typography, TextField, AppBar } from "@material-ui/core";
   import Container from "@material-ui/core/Container";
   import InputLabel from "@material-ui/core/InputLabel";
   import FormHelperText from "@material-ui/core/FormHelperText";
@@ -121,6 +121,10 @@ export default class FoodPage extends Component {
     render() {
         return (
           <div>
+            <AppBar position="static" color="transparent" elevation={0}>
+              <img src={require('./logo_without_words.png')} alt="logo" height={200} width={200}/>
+            </AppBar>
+            <br></br>
             <form>
               <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
