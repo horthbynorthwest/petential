@@ -32,7 +32,6 @@ function Weather() {
   // }
 
   return (
-    <div>
       <main>
         <h5>Get today's weather to plan your walk!</h5>
         <br />
@@ -57,10 +56,7 @@ function Weather() {
         ) : ('')}
         <br />
         <br />
-        <br />
-        <br />
       </main>
-    </div>
   );
 }
 

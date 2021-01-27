@@ -111,11 +111,10 @@ export default class WalkPage extends Component {
       <div>
         <AppBar position="static" color="transparent" elevation={0}>
               <img src={require('./logo_without_words.png')} alt="logo" height={200} width={200}/>
-          </AppBar>
-          <br></br>
         <Grid spacing={3} align="center">
         <Weather />
         </Grid>
+        </AppBar>
         <form>
         <Container maxWidth="xs" align="center">
       <Grid container spacing={3}>
