@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CreatePackPage from "./CreatePackPage";
 import JoinPackPage from "./JoinPackPage";
 import Pack from "./Pack";
+import Weather from "./Weather"
 import FoodPage from "./FoodPage";
 import WalkPage from "./WalkPage";
 import BehaviourPage from "./BehaviourPage";
@@ -101,6 +102,7 @@ export default class WelcomPage extends Component {
             <Route path="/behaviour" component={BehaviourPage} />
             <Route path="/toilet" component={ToiletPage} />
             <Route path="/medical" component={MedicalPage} />
+            <Route path="/weather" component={Weather} />
           </Switch>
         </Router>
       );;

@@ -11,4 +11,5 @@ urlpatterns = [
     path('behaviour', index),
     path('toilet', index),
     path('medical', index),
+    path('weather', index)
 ]
