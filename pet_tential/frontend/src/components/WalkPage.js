@@ -15,6 +15,7 @@ import {
   import RadioGroup from "@material-ui/core/RadioGroup";
   import FormControlLabel from "@material-ui/core/FormControlLabel";
   import { makeStyles } from '@material-ui/core/styles';
+  import Weather from "./Weather";
 
 export default class WalkPage extends Component {
   constructor(props) {
@@ -106,6 +107,9 @@ export default class WalkPage extends Component {
   render() {
     return (
       <div>
+        <Grid spacing={3} align="center">
+        <Weather />
+        </Grid>
         <form>
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
