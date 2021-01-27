@@ -194,6 +194,7 @@ export default class FoodPage extends Component {
             </form>
             <Grid container spacing={3}>
               <Grid item xs={12} align="center">
+                    <br />
                     <Typography component="h4" variant="h4">
                         Meal Log
                     </Typography>

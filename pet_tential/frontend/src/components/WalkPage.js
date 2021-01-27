@@ -23,7 +23,8 @@ export default class WalkPage extends Component {
       time: "",
       date: "",
       comment: "",
-      duration: ""
+      duration: "",
+      walkList: []
     };
 
     this.handleTimeChange = this.handleTimeChange.bind(this);
@@ -32,6 +33,34 @@ export default class WalkPage extends Component {
     this.handleDurationChange = this.handleDurationChange.bind(this);
     this.handleSubmitButtonPressed = this.handleSubmitButtonPressed.bind(this);
   }
+
+  componentDidMount() {
+    this.refreshList();
+  }
+
+  refreshList = () => {
+    fetch("/api/get-walk")
+      .then((response) => response.json())
+      .then((walks) => {
+        console.log(walks);
+        this.setState({
+          walkList: walks
+        });
+      });
+  };
+
+  renderItems = () => {
+    const newItems = this.state.walkList;
+    return newItems.map(item => (
+        <li
+          key={item.id}
+         >
+          <span>
+            {item.date} - {item.time} - {item.duration} - Comment: {item.comment}
+          </span>
+        </li>
+    ));
+  };
 
   handleDateChange(e) {
     this.setState({
@@ -76,6 +105,8 @@ export default class WalkPage extends Component {
 
   render() {
     return (
+      <div>
+        <form>
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
             <Typography component="h4" variant="h4">
@@ -143,6 +174,21 @@ export default class WalkPage extends Component {
           </ButtonGroup>
         </Grid>
       </Grid>
+      </form>
+      <Grid container spacing={3}>
+              <Grid item xs={12} align="center">
+                    <br />
+                    <Typography component="h4" variant="h4">
+                        Walk Log
+                    </Typography>
+                </Grid>
+              <Grid item xs={12} alignitem="center">
+                <ul alignitem="center">
+                  {this.renderItems()}
+                </ul>
+              </Grid>
+            </Grid>
+    </div>
     );
   }
 }

@@ -161,7 +161,7 @@ class GetWalk(generics.ListAPIView):
         serializer_class = WalkSerializer(queryset, many=True)
         pack_id = self.request.session.get('pack_id')
         if pack_id:
-            walkList = Walk.objects.filter(pack_id=pack_id).order_by('-date')[:10]
+            walkList = Walk.objects.filter(pack_id=pack_id).order_by('-id')[:10]
 
             return Response(WalkSerializer(walkList, many=True).data, status=status.HTTP_200_OK)
 
