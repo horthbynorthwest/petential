@@ -58,8 +58,20 @@ export default class WalkPage extends Component {
   }
 
   handleSubmitButtonPressed() {
-    console.log(this.state);
-  }
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date: this.state.date,
+          time: this.state.time,
+          duration: this.state.duration,
+          comment: this.state.comment,
+        }),
+      };
+      fetch("/api/add-walk", requestOptions)
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+}
 
 
   render() {
