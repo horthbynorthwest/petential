@@ -49,7 +49,7 @@ function Weather() {
         {(typeof weather.main != "undefined") ? (
         <div>
           <h5>
-              Today in {weather.name}, {weather.sys.country} it is {Math.round(weather.main.temp)}°c
+              Today in {weather.name}, {weather.sys.country} it is {Math.round(weather.main.temp)}°C
                 with {weather.weather[0].description}
           </h5>
         </div>
