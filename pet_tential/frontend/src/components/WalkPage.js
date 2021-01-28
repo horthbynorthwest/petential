@@ -119,8 +119,8 @@ export default class WalkPage extends Component {
         <Container maxWidth="xs" align="center">
       <Grid container spacing={3}>
         <Grid item xs={12} align="center">
-            <Typography component="h4" variant="h4">
-                Add Walk
+            <Typography>
+                <h1>Add Walk </h1>
             </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -189,8 +189,8 @@ export default class WalkPage extends Component {
       <Grid container spacing={3}>
               <Grid item xs={12} align="center">
                     <br />
-                    <Typography component="h4" variant="h4">
-                        Walk Log
+                    <Typography>
+                        <h1>Walk Log</h1>
                     </Typography>
                 </Grid>
               <Grid item xs={12} align="left">

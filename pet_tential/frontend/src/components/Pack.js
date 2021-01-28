@@ -62,12 +62,13 @@ render() {
       <Grid container spacing={1} align="center">
     
         <Grid item xs={12} align="center">
-            <Typography component="h4" variant="h4">
-            Welcome to Petential
-            <p>Your Pack Code is: {this.packCode}</p>            
+            <Typography>
+            <h1> Welcome to {this.state.petName.toString()}'s Pack Page </h1>
             <br />
-            <p>Pet Name: {this.state.petName.toString()}</p>
-               
+            <br />
+            <h4>Add members to your pack with this code: {this.packCode}</h4>  
+            <br />
+            <br />
             </Typography>
         </Grid>
         <Grid item xs={12} align="center">

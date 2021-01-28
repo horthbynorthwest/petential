@@ -130,8 +130,8 @@ export default class FoodPage extends Component {
                 alignItems="center"
                 justify="center">
                 <Grid item xs={6} align="center">
-                    <Typography component="h4" variant="h4">
-                        Add Food
+                    <Typography>
+                        <h1>Add Food</h1>
                     </Typography>
                 </Grid>
                 <Grid item xs={12} width="50%">
@@ -203,8 +203,8 @@ export default class FoodPage extends Component {
             <Grid container spacing={3}>
               <Grid item xs={12} align="center">
                     <br />
-                    <Typography component="h4" variant="h4">
-                        Meal Log
+                    <Typography>
+                        <h1>Meal Log</h1>
                     </Typography>
                 </Grid>
               <Grid item xs={12} alignitem="left">
