@@ -54,17 +54,17 @@ export default class Pack extends Component {
 
 render() {
     return (
-      <div>
+      <div className="bg">
         <AppBar position="static" color="transparent" elevation={0}>
               <img src={require('./logo_without_words.png')} alt="logo" height={200} width={200}/>
-          </AppBar>
+        </AppBar>
           <br></br>
       <Grid container spacing={1} align="center">
     
         <Grid item xs={12} align="center">
             <Typography component="h4" variant="h4">
             Welcome to Petential
-            <p>Your Pack Code is:{this.packCode}</p>            
+            <p>Your Pack Code is: {this.packCode}</p>            
             <br />
             <p>Pet Name: {this.state.petName.toString()}</p>
                

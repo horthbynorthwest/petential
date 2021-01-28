@@ -32,7 +32,6 @@ function Weather() {
   // }
 
   return (
-    <div>
       <main>
         <h5>Get today's weather to plan your walk!</h5>
         <br />
@@ -50,17 +49,14 @@ function Weather() {
         {(typeof weather.main != "undefined") ? (
         <div>
           <h5>
-              Today in {weather.name}, {weather.sys.country} it is {Math.round(weather.main.temp)}°c
+              Today in {weather.name}, {weather.sys.country} it is {Math.round(weather.main.temp)}°C
                 with {weather.weather[0].description}
           </h5>
         </div>
         ) : ('')}
         <br />
         <br />
-        <br />
-        <br />
       </main>
-    </div>
   );
 }
 

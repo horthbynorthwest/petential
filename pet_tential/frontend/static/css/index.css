@@ -5,6 +5,14 @@ body {
   padding: 0;
 }
 
+.bg {
+  background-image: url('./lotsapawprints.png');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
 #main {
   position: fixed;
   width: 100%;
