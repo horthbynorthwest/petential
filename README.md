@@ -1,5 +1,7 @@
 # Petential
 
+[About](#About) | [Demo](#Demo) | [Quick Start](#Quick-Start) | [Tech Stack](#Tech-Stack) | [Team Petential](#Team-Petential)
+
 ## About
 Petential is a web application that allows you and members of your family to keep track of your pet's daily needs.
 
@@ -8,11 +10,10 @@ Petential is a web application that allows you and members of your family to kee
  * No need to remember your code, your browser will remember while you're logged in
  * Track meals and treats
  * Record walks and check your local weather
- 
-Petential was made as a 2 week final project for Makers by:
 
-[Mel](https://github.com/TamMelPer) | [Lucy](https://github.com/stringiest) | [Savanna](https://github.com/savannaelbey) | [Georgie](https://github.com/horthbynorthwest)
+## Demo
 
+![Demo](https://user-images.githubusercontent.com/71782749/106255063-68f84800-6211-11eb-9d98-e91c24084ec3.gif)
 
 ## Quick Start
 
@@ -47,3 +48,9 @@ Petential was made as a 2 week final project for Makers by:
 | npm          | package management            |
 | ReactJS       | Frontend JavaScript Framework |
 | Material-UI         | Styling                  |
+
+## Team Petential
+
+Petential was made as a 2 week final project for Makers by:
+
+[Mel](https://github.com/TamMelPer) | [Lucy](https://github.com/stringiest) | [Savanna](https://github.com/savannaelbey) | [Georgie](https://github.com/horthbynorthwest)
